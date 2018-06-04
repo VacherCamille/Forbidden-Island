@@ -132,13 +132,15 @@ public abstract class CarteAventurier {
                         chemin1 = false;
                     } 
                 }
+                if(chemin1 == false){
+                    System.out.println("DEPLACEMENT IMPOSSIBLE");
+                }
+                else if(chemin1 == true){
+                    System.out.println("DEPLACEMENT POSSIBLE");
+                }
             }
+            
         }
-        if(chemin1 == false){
-            System.out.println("DEPLACEMENT IMPOSSIBLE");
-        }
-        else if(chemin1 == true){
-            System.out.println("DEPLACEMENT POSSIBLE");
-        }
+        
     }
 }
