@@ -37,10 +37,12 @@ public abstract class CarteAventurier {
     
     public void donnerCarteT(Aventurier J2,CarteTresor C){
         if (J1.getPosition() == J2.getPosition()){
-           if (J2.hasFullDeck()==false){
-            J2.addCarteTresor(C);
-            J1.removeCarteTresor(C);
-           }
+            if (J1.getPointAction()<1){ 
+                if (J2.hasFullDeck()==false){
+                 J2.addCarteTresor(C);
+                 J1.removeCarteTresor(C);
+                }
+            } 
         }
     }
 }
