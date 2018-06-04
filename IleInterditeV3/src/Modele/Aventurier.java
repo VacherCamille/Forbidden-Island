@@ -50,6 +50,8 @@ public class Aventurier {
         return deckTresor;
     }
     
+ 
+    
     // =========================================================================
     
     public Pion getPion() {
@@ -66,5 +68,9 @@ public class Aventurier {
     
     public void addCarteTresor(CarteTresor carteTresor) {
         deckTresor.add(carteTresor);
+    }
+    
+    public void removeCarteTresor(CarteTresor carteTresor) {
+        deckTresor.remove(carteTresor);
     }
 }
