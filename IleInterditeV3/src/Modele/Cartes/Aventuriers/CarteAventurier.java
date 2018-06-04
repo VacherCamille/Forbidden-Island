@@ -42,6 +42,7 @@ public abstract class CarteAventurier {
     }
     
     // =========================================================================
+    
     public boolean assecher(int x, int y){ // vrai si effectué
       if(getCasesAssech().contains(new Position(x,y))){
          if(getAventurier().getGrille().getTuile(x,y).getEtat() == EtatTuile.INONDEE){
@@ -51,7 +52,9 @@ public abstract class CarteAventurier {
       }
       return false;
     }
-        public ArrayList<Position> getCasesAssech(){
+    
+    
+    public ArrayList<Position> getCasesAssech(){ // aficher les tuiles atteignables
             ArrayList<Position> ap = new ArrayList();
             ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
             ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()));
@@ -61,6 +64,7 @@ public abstract class CarteAventurier {
             return ap;
         }
         
+    
     public void donnerCarteT(Aventurier J2,CarteTresor C){
         if (a.getPosition() == J2.getPosition()){
             if (a.getPointAction()<1){ 
