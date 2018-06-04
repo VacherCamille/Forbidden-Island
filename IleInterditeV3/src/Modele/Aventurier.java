@@ -18,6 +18,7 @@ import util.Utils.Pion;
 public class Aventurier {
     private final String nomAventurier;
     private final CarteAventurier role;
+    private int pointAction = 3;
     private Position position;
     private ArrayList<CarteTresor> deckTresor;
     
@@ -49,8 +50,14 @@ public class Aventurier {
     public ArrayList<CarteTresor> getDeckTresor() {
         return deckTresor;
     }
-    
- 
+
+    public int getPointAction() {
+        return pointAction;
+    }
+
+    public void setPointAction(int pointAction) {
+        this.pointAction = pointAction;
+    }
     
     // =========================================================================
     
