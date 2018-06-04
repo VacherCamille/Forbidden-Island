@@ -5,6 +5,7 @@
  */
 package Modele.Cartes.Aventuriers;
 
+import Modele.Aventurier;
 import util.Utils.Pion;
 
 /**
@@ -14,6 +15,7 @@ import util.Utils.Pion;
 public abstract class CarteAventurier {
     private final String nomRole;
     private final Pion pion;
+    private Aventurier J1;
     
     public CarteAventurier(String nomRole, Pion pion) {
         this.nomRole = nomRole;
@@ -31,4 +33,17 @@ public abstract class CarteAventurier {
     }
     
     // =========================================================================
+    
+    public void donnerCarteT(Aventurier J2,CarteTresor C){
+        if (J1.getPosition() == J2.getPosition()){
+           if (J2.hasFullDeck()){
+               
+           }else{
+            J2.addCarteTresor(C);
+            J1.removeCarteTresor(C);
+           }
+        }else{
+            
+        }
+    }
 }
