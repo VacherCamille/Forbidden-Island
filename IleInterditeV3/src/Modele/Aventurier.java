@@ -11,6 +11,7 @@ import Modele.Plateau.Grille;
 import Modele.Plateau.Position;
 import java.util.ArrayList;
 import util.Utils.Pion;
+import util.Utils.Tresor;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Aventurier {
     private int pointAction = 3;
     private Position position;
     private ArrayList<CarteTresor> deckTresor;
+     private ArrayList<Tresor> Tresors;
     private Grille g;
     
     public Aventurier(String nomAventurier, CarteAventurier role) {

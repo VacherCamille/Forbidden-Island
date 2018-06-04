@@ -5,6 +5,8 @@
  */
 package Modele.Cartes.Aventuriers;
 
+import Modele.Aventurier;
+import Modele.Cartes.Tresor.CarteTresor;
 import util.Utils.Pion;
 
 /**
@@ -15,5 +17,12 @@ public class Messager extends CarteAventurier {
     
     public Messager() {
         super("Messager", Pion.ORANGE);
+    }
+    
+    @Override
+    public void donnerCarteT(Aventurier J2,CarteTresor C){
+
+      J2.addCarteTresor(C);
+      getAventurier().removeCarteTresor(C);
     }
 }
