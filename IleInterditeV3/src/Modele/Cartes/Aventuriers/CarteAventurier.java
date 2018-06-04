@@ -107,26 +107,12 @@ public abstract class CarteAventurier {
         }
         else{
             if(nbcasedep == 1){
-                if(xdep == -1 && ydep == 0){
+                if((xdep == -1 && ydep == 0) || (xdep == 1 && ydep == 0) || (xdep == 0 && ydep == -1) || (xdep == 0 && ydep == 1)){
                     if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
                         chemin1 = false;
                     } 
                 }
-                if(xdep == 1 && ydep == 0){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    }   
-                }
-                if(xdep == 0 && ydep == -1){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    } 
-                }
-                if(xdep == 0 && ydep == 1){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    } 
-                }
+                
                 if(chemin1 == false){
                     System.out.println("DEPLACEMENT IMPOSSIBLE");
                 }
