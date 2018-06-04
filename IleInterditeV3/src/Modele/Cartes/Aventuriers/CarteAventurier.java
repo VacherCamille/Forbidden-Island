@@ -71,4 +71,71 @@ public abstract class CarteAventurier {
              a.removeCarteTresor(C);
         }
     }
+    
+    public void seDeplacer(int x, int y){
+        Position posjoueur = new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY());
+        int nbcasedep = 0;
+        int xdep = 0;
+        int ydep = 0;
+        int xdepPosit = 0;
+        int ydepPosit = 0;
+        boolean chemin1 = true;
+        
+        xdep = posjoueur.getX()-x;
+        ydep = posjoueur.getY()-y;
+        
+        if(xdep < 0){
+            xdepPosit = xdep*(-1);
+        }
+        else{
+            xdepPosit = xdep;
+        }
+        
+        if(ydep < 0){
+            ydepPosit = ydep*(-1);
+        }
+        else{
+            ydepPosit = ydep;
+        }
+        
+        nbcasedep = xdepPosit + ydepPosit;
+        if(nbcasedep > this.getAventurier().getPointAction()){
+            System.out.println("DEPLACEMENT TROP GRAND");
+        }
+        else if(nbcasedep == 0){
+            System.out.println("DEPLACEMENT SUR SOIS MEME IMPOSSIBLE");
+        }
+        else{
+            if(nbcasedep == 1){
+                if(xdep == -1 && ydep == 0){
+                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
+                        chemin1 = false;
+                    } 
+                }
+                if(xdep == 1 && ydep == 0){
+                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
+                        chemin1 = false;
+                    }   
+                }
+                if(xdep == 0 && ydep == -1){
+                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
+                        chemin1 = false;
+                    } 
+                }
+                if(xdep == 0 && ydep == 1){
+                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
+                        chemin1 = false;
+                    } 
+                }
+                if(chemin1 == false){
+                    System.out.println("DEPLACEMENT IMPOSSIBLE");
+                }
+                else if(chemin1 == true){
+                    System.out.println("DEPLACEMENT POSSIBLE");
+                }
+            }
+            
+        }
+        
+    }
 }
