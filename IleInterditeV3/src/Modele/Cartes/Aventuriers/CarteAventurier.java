@@ -9,7 +9,6 @@ import Modele.Aventurier;
 import Modele.Cartes.Tresor.CarteTresor;
 import Modele.Plateau.Position;
 import java.util.ArrayList;
-import util.Utils;
 import util.Utils.EtatTuile;
 import util.Utils.Pion;
 import util.Utils.Tresor;
@@ -73,7 +72,7 @@ public abstract class CarteAventurier {
         }
     }
     
-    public void seDeplacer(int x, int y){
+    public void seDeplacer(Aventurier J, int x, int y){
         Position posjoueur = new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY());
         int nbcasedep = 0;
         int xdep = 0;
@@ -133,6 +132,8 @@ public abstract class CarteAventurier {
                 }
                 else if(chemin1 == true){
                     System.out.println("DEPLACEMENT POSSIBLE");
+                    Position deplacement = new Position(x,y);
+                    J.setPosition(deplacement);
                 }
             }
             
