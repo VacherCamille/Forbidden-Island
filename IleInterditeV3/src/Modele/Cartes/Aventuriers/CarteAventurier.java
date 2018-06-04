@@ -20,7 +20,7 @@ import util.Utils.Pion;
 public abstract class CarteAventurier {
     private final String nomRole;
     private final Pion pion;
-    private Aventurier J1;
+    private Aventurier a;
     
     public CarteAventurier(String nomRole, Pion pion) {
         this.nomRole = nomRole;
@@ -30,7 +30,7 @@ public abstract class CarteAventurier {
     // === GETTERS & SETTERS ===================================================
 
     public Aventurier getAventurier() {
-        return J1;
+        return a;
     }
 
    public String getNomRole() {
@@ -58,12 +58,12 @@ public abstract class CarteAventurier {
       }
     }
     public void donnerCarteT(Aventurier J2,CarteTresor C){
-        if (J1.getPosition() == J2.getPosition()){
-            if (J1.getPointAction()<1){ 
+        if (a.getPosition() == J2.getPosition()){
+            if (a.getPointAction()<1){ 
                 if (J2.hasFullDeck()==false){
                  J2.addCarteTresor(C);
-                 J1.removeCarteTresor(C);
-                 J1.setPointAction(J1.getPointAction()-1);
+                 a.removeCarteTresor(C);
+                 a.setPointAction(a.getPointAction()-1);
                 }
             } 
         }
