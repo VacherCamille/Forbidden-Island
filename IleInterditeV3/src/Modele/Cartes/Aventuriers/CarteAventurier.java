@@ -134,6 +134,7 @@ public abstract class CarteAventurier {
                     System.out.println("DEPLACEMENT POSSIBLE");
                     Position deplacement = new Position(x,y);
                     J.setPosition(deplacement);
+                    System.out.println("DEPLACEMENT EFFECTUE");
                 }
             }
             
