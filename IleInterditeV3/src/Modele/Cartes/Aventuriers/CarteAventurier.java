@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import util.Utils;
 import util.Utils.EtatTuile;
 import util.Utils.Pion;
+import util.Utils.Tresor;
 
 /**
  *
@@ -136,6 +137,29 @@ public abstract class CarteAventurier {
             }
             
         } //hhhhhh
-        
     }
+         public void gagnerTresor(Aventurier a){
+            int j=0;
+            
+        
+      Tresor c=  a.getPosition().getTuile().getSpawnTresor();
+      
+      for(int i=0; i<=a.getDeckTresor().size(); i++){
+          if( a.getDeckTresor().get(i).getNomCarteT().equals(c.toString())){
+              j=j+1;
+         
+          }
+        
 }
+      if( j==4){
+          System.out.println("l'Aventurier " +a +" a gagné le trésor "+ c.toString());
+          Tresors.remove(c.toString());
+          
+      }
+
+    
+
+         }
+}
+
+
