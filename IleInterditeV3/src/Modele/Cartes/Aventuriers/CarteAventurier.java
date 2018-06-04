@@ -41,6 +41,7 @@ public abstract class CarteAventurier {
                 if (J2.hasFullDeck()==false){
                  J2.addCarteTresor(C);
                  J1.removeCarteTresor(C);
+                 J1.setPointAction(J1.getPointAction()-1);
                 }
             } 
         }
