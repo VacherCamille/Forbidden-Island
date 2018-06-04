@@ -42,22 +42,22 @@ public abstract class CarteAventurier {
     }
     
     // =========================================================================
-        public void assecher(int x, int y){
-     
+    public boolean assecher(int x, int y){ // vrai si effectué
       if(getCasesAssech().contains(new Position(x,y))){
          if(getAventurier().getGrille().getTuile(x,y).getEtat() == EtatTuile.INONDEE){
             getAventurier().getGrille().getTuile(x,y).setEtat(EtatTuile.ASSECHEE);
+            return true;
          }
-               
       }
+      return false;
     }
         public ArrayList<Position> getCasesAssech(){
             ArrayList<Position> ap = new ArrayList();
             ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()+1));
-            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()-1));
-            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()+1));
-            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()-1));
+            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()));
+            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()+1));
+            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()));
+            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()-1));
             return ap;
         }
         
