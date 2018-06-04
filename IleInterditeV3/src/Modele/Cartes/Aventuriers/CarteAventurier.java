@@ -66,14 +66,9 @@ public abstract class CarteAventurier {
         
     
     public void donnerCarteT(Aventurier J2,CarteTresor C){
-        if (a.getPosition() == J2.getPosition()){
-            if (a.getPointAction()<1){ 
-                if (J2.hasFullDeck()==false){
-                 J2.addCarteTresor(C);
-                 a.removeCarteTresor(C);
-                 a.setPointAction(a.getPointAction()-1);
-                }
-            } 
+        if (a.getPosition().getTuile().equals(J2.getPosition().getTuile())){
+             J2.addCarteTresor(C);
+             a.removeCarteTresor(C);
         }
     }
 }
