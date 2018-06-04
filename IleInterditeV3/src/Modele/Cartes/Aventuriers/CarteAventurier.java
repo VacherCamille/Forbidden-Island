@@ -43,20 +43,24 @@ public abstract class CarteAventurier {
     
     // =========================================================================
         public void assecher(int x, int y){
-      ArrayList<Position> ap = new ArrayList();
-      ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
-      ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()+1));
-      ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()-1));
-      ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()+1));
-      ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()-1));
-
-      if(ap.contains(new Position(x,y))){
+     
+      if(getCasesAssech().contains(new Position(x,y))){
          if(getAventurier().getGrille().getTuile(x,y).getEtat() == EtatTuile.INONDEE){
             getAventurier().getGrille().getTuile(x,y).setEtat(EtatTuile.ASSECHEE);
          }
                
       }
     }
+        public ArrayList<Position> getCasesAssech(){
+            ArrayList<Position> ap = new ArrayList();
+            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
+            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()+1));
+            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()-1));
+            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()+1));
+            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()-1));
+            return ap;
+        }
+        
     public void donnerCarteT(Aventurier J2,CarteTresor C){
         if (a.getPosition() == J2.getPosition()){
             if (a.getPointAction()<1){ 
