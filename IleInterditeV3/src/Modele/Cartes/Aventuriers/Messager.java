@@ -21,12 +21,8 @@ public class Messager extends CarteAventurier {
     
     @Override
     public void donnerCarteT(Aventurier J2,CarteTresor C){
-            if (getAventurier().getPointAction()<1){ 
-                if (J2.hasFullDeck()==false){
-                 J2.addCarteTresor(C);
-                 getAventurier().removeCarteTresor(C);
-                 getAventurier().setPointAction(getAventurier().getPointAction()-1);
-                }
-             }
+
+      J2.addCarteTresor(C);
+      getAventurier().removeCarteTresor(C);
     }
 }
