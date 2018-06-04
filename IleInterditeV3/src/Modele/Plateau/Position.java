@@ -14,8 +14,8 @@ import Modele.Aventurier;
 public class Position {
     private int x;
     private int y;
-    private final Grille grille;
-    private final Aventurier aventurier;
+    private  Grille grille;
+    private Aventurier aventurier;
     
     public Position(Grille grille, Aventurier aventurier, int x, int y) {
         this.grille = grille;
@@ -23,6 +23,11 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+   public Position(int x, int y) {
+      this.x = x;
+      this.y = y;
+   }
     
     // === GETTERS & SETTERS ===================================================
 
