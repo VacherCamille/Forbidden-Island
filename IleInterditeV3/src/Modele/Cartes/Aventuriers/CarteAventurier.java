@@ -48,6 +48,7 @@ public abstract class CarteAventurier {
       if(getCasesAssech().contains(new Position(x,y))){
          if(getAventurier().getGrille().getTuile(x,y).getEtat() == EtatTuile.INONDEE){
             getAventurier().getGrille().getTuile(x,y).setEtat(EtatTuile.ASSECHEE);
+             System.out.println("assechement de la tuile en : " + x + "," + y );
             return true;
          }
       }
