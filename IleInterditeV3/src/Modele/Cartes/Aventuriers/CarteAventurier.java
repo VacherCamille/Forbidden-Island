@@ -130,9 +130,18 @@ public abstract class CarteAventurier {
             }
         
         }
-        if( j==4){
+        if( j>=4){
           System.out.println("l'Aventurier " +a +" a gagné le trésor "+ c.toString());
-          Tresors.remove(c.toString());
+          
+          int i=4;
+          int k = 0;
+          while(i >0){
+            if (a.getDeckTresor().get(k).getNomCarteT().equals(c.toString())){
+               a.getDeckTresor().remove(c.toString());               
+            }
+            k++;
+            i--;
+          }
          
         }
 
