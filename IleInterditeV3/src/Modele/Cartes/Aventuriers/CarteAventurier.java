@@ -9,7 +9,6 @@ import Modele.Aventurier;
 import Modele.Cartes.Tresor.CarteTresor;
 import Modele.Plateau.Position;
 import java.util.ArrayList;
-import util.Utils;
 import util.Utils.EtatTuile;
 import util.Utils.Pion;
 import util.Utils.Tresor;
@@ -84,18 +83,15 @@ public abstract class CarteAventurier {
              a.removeCarteTresor(C);
         }
     }
-    
-    public void seDeplacer(int x, int y){
-        Position posjoueur = new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY());
+    public boolean getDeplacementPossible(Aventurier J,int x, int y){
         int nbcasedep = 0;
         int xdep = 0;
         int ydep = 0;
         int xdepPosit = 0;
         int ydepPosit = 0;
-        boolean chemin1 = true;
         
-        xdep = posjoueur.getX()-x;
-        ydep = posjoueur.getY()-y;
+        xdep = this.getAventurier().getPosition().getX()-x;
+        ydep = this.getAventurier().getPosition().getY()-y;
         
         if(xdep < 0){
             xdepPosit = xdep*(-1);
@@ -120,35 +116,28 @@ public abstract class CarteAventurier {
         }
         else{
             if(nbcasedep == 1){
-                if(xdep == -1 && ydep == 0){
+                if((xdep == -1 && ydep == 0) || (xdep == 1 && ydep == 0) || (xdep == 0 && ydep == -1) || (xdep == 0 && ydep == 1)){
                     if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
+                        return false;
                     } 
+                    else{
+                        return false;
+                    }
                 }
-                if(xdep == 1 && ydep == 0){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    }   
-                }
-                if(xdep == 0 && ydep == -1){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    } 
-                }
-                if(xdep == 0 && ydep == 1){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        chemin1 = false;
-                    } 
-                }
-                if(chemin1 == false){
-                    System.out.println("DEPLACEMENT IMPOSSIBLE");
-                }
-                else if(chemin1 == true){
-                    System.out.println("DEPLACEMENT POSSIBLE");
+                
+                    
                 }
             }
-            
-        } //hhhhhh
+        }
+    
+    
+    public void seDeplacer(Aventurier J, int x, int y){
+        if(getDeplacementPossible(J, x, y) == true){
+            J.getPosition().setX(x);
+            J.getPosition().setY(y);
+            System.out.println("DEPLACEMENT EFFECTUE"); 
+        }
+          
     }
          public void gagnerTresor(Aventurier a){
             int j=0;
