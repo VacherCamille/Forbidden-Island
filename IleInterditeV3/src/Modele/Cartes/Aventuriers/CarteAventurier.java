@@ -8,6 +8,7 @@ package Modele.Cartes.Aventuriers;
 import Modele.Aventurier;
 import Modele.Cartes.Tresor.CarteTresor;
 import Modele.Plateau.Position;
+import Modele.Plateau.Tuile;
 import java.util.ArrayList;
 import util.Utils.EtatTuile;
 import util.Utils.Pion;
@@ -20,7 +21,7 @@ import util.Utils.Tresor;
 public abstract class CarteAventurier {
     private final String nomRole;
     private final Pion pion;
-    private Aventurier a;
+    private Aventurier joueur;
     
     public CarteAventurier(String nomRole, Pion pion) {
         this.nomRole = nomRole;
@@ -55,96 +56,62 @@ public abstract class CarteAventurier {
     
     
     public ArrayList<Position> getCasesAssech(){ // aficher les tuiles atteignables
-            ArrayList<Position> ap = new ArrayList();
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()+1));
-            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()-1));
-            return ap;
-        }
-        
-    
-    public void donnerCarteT(Aventurier J2,CarteTresor C){
-        if (a.getPosition().getTuile().equals(J2.getPosition().getTuile())){
-             J2.addCarteTresor(C);
-             a.removeCarteTresor(C);
-        }
+        ArrayList<Position> ap = new ArrayList();
+        ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
+        ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()));
+        ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()+1));
+        ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()));
+        ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()-1));
+        return ap;
     }
-    public boolean getDeplacementPossible(Aventurier J,int x, int y){
-        int nbcasedep = 0;
-        int xdep = 0;
-        int ydep = 0;
-        int xdepPosit = 0;
-        int ydepPosit = 0;
         
-        xdep = this.getAventurier().getPosition().getX()-x;
-        ydep = this.getAventurier().getPosition().getY()-y;
-        
-        if(xdep < 0){
-            xdepPosit = xdep*(-1);
-        }
-        else{
-            xdepPosit = xdep;
-        }
-        
-        if(ydep < 0){
-            ydepPosit = ydep*(-1);
-        }
-        else{
-            ydepPosit = ydep;
-        }
-        
-        nbcasedep = xdepPosit + ydepPosit;
-        if(nbcasedep > this.getAventurier().getPointAction()){
-            System.out.println("DEPLACEMENT TROP GRAND");
-        }
-        else if(nbcasedep == 0){
-            System.out.println("DEPLACEMENT SUR SOIS MEME IMPOSSIBLE");
-        }
-        else{
-            if(nbcasedep == 1){
-                if((xdep == -1 && ydep == 0) || (xdep == 1 && ydep == 0) || (xdep == 0 && ydep == -1) || (xdep == 0 && ydep == 1)){
-                    if(getAventurier().getGrille().getTuile(xdep,ydep).getEtat() == EtatTuile.INONDEE || getAventurier().getGrille().getTuile(xdep,ydep)==null){
-                        return false;
-                    } 
-                    else{
-                        return false;
-                    }
-                }
-                
-                    
-                }
+    public void donnerCarte(Aventurier destinataire, String nomCarte) {
+        if (joueur != null && joueur.getPointAction() > 0) {
+            Tuile tuileDestinateur = joueur.getPosition().getTuile();
+            Tuile tuileDestinataire = destinataire.getPosition().getTuile();
+            if (tuileDestinateur.equals(tuileDestinataire)) {
+                CarteTresor carteDonnee = joueur.getCarteTresorFromName(nomCarte);
+                joueur.removeCarteTresor(carteDonnee);
+                destinataire.addCarteTresor(carteDonnee);
+                System.out.println("=== CARTE TRANSFEREE ! =====================");
+                joueur.utiliserPA();
+            } else {
+                System.out.println("=== ERREUR DON DE CARTE : PAS MÊME TUILE ===");
             }
+        } else {
+            System.out.println("=== ERREUR DON DE CARTE : PAS ASSEZ DE PA ! =================");
         }
-    
-    
-    public void seDeplacer(Aventurier J, int x, int y){
-        if(getDeplacementPossible(J, x, y) == true){
-            J.getPosition().setX(x);
-            J.getPosition().setY(y);
-            System.out.println("DEPLACEMENT EFFECTUE"); 
-        }
-          
     }
-         public void gagnerTresor(Aventurier a){
-            int j=0;
-            
-        
-      Tresor c=  a.getPosition().getTuile().getSpawnTresor();
+    
+    public void seDeplacer(int x, int y) {
+        if (joueur != null && joueur.getPointAction() > 0) {
+            Position pos = joueur.getPosition();
+            pos.setX(x);
+            pos.setY(y);
+            Position posJGrille = pos.getGrille().getPosJoueurs().get(joueur.getNomAventurier());
+            posJGrille.setX(x);
+            posJGrille.setY(y);
+            System.out.println("=== DEPLACEMENT EFFECTUE ! =====================");
+            joueur.utiliserPA();
+        } else {
+            System.out.println("=== ERREUR  DEPLACEMENT : PAS ASSEZ DE PA ! =================");
+        }
+    }
+    
+    public void gagnerTresor(Aventurier a){
+        int j=0;
+        Tresor c=  a.getPosition().getTuile().getSpawnTresor();
       
-      for(int i=0; i<=a.getDeckTresor().size(); i++){
-          if( a.getDeckTresor().get(i).getNomCarteT().equals(c.toString())){
-              j=j+1;
-         
-          }
+        for(int i=0; i<=a.getDeckTresor().size(); i++){
+            if( a.getDeckTresor().get(i).getNomCarteT().equals(c.toString())){
+                j=j+1;
+            }
         
-}
-      if( j==4){
+        }
+        if( j==4){
           System.out.println("l'Aventurier " +a +" a gagné le trésor "+ c.toString());
           Tresors.remove(c.toString());
-          
-      }
+        }
 
     
 
