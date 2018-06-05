@@ -11,5 +11,7 @@ package MVC;
  */
 public enum TypesMessages {
     DEMARRER_PARTIE,
-    JOUER_TOUR
+    JOUER_TOUR,
+    DONNER_CARTE,
+    SE_DEPLACER
 }

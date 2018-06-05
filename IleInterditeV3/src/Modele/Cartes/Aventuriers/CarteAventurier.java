@@ -110,11 +110,25 @@ public abstract class CarteAventurier {
     public void seDeplacer(int x, int y) {
         if (joueur != null && joueur.getPointAction() > 0) {
             Position pos = joueur.getPosition();
+            if (pos.getX() == x && pos.getY() == y) {
+                System.out.println("=== DEPLACEMENT INUTILE ! ======================");
+                return;
+            }
+            int deplacement = Math.abs(x - pos.getX()) + Math.abs(y - pos.getY());
+            if (!joueur.getRole().getNomRole().equals("Explorateur") && deplacement > 1) {
+                System.out.println("=== ERREUR : DEPLACEMENT > A 1 ! ===============");
+                return;
+            }
+            if (joueur.getRole().getNomRole().equals("Explorateur")) {
+                int xdep = pos.getX() - x;
+                int ydep = pos.getY() - y;
+                if ((xdep < -1 && xdep > 1) || (ydep < -1 && ydep > 1)) {
+                    System.out.println("=== ERREUR (EXPLORATEUR): DEPLACEMENT > A 1 ! ==========");
+                    return;
+                }
+            }
             pos.setX(x);
             pos.setY(y);
-            Position posJGrille = pos.getGrille().getPosJoueurs().get(joueur.getNomAventurier());
-            posJGrille.setX(x);
-            posJGrille.setY(y);
             System.out.println("=== DEPLACEMENT EFFECTUE ! =====================");
             joueur.utiliserPA();
         } else {

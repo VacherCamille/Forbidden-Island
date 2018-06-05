@@ -11,7 +11,18 @@ package MVC;
  */
 public class Message {
     public TypesMessages type;
+    public String destinateur;
+    
+    // DEMARRER_PARTIE
     public int nbJoueurs;
     public String[] listeJoueurs;
     public String difficulte;
+    
+    // DONNER_CARTE
+    public String nomCarteT;
+    public String destinataire;
+    
+    // SE_DEPLACER
+    public int posX;
+    public int posY;
 }

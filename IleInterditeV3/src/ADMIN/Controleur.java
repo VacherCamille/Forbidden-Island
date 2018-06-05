@@ -59,6 +59,8 @@ public class Controleur implements Observateur {
 
     @Override
     public void traiterMessage(Message msg) {
+        Aventurier destinateur = null;
+        
         switch (msg.type) {
             case DEMARRER_PARTIE:
                 ecranPrincipal.fermer();
@@ -150,6 +152,27 @@ public class Controleur implements Observateur {
                 
                 System.out.println("INITIALISATION PARTIE TERMINEE !");
                 this.verifEtatPartie();
+                break;
+                
+            // === ACTIONS ==========
+            case DONNER_CARTE:
+                Aventurier destinataire = joueurs.get(msg.destinataire);
+                destinateur = joueurs.get(msg.destinateur);
+                destinateur.donnerCarte(destinataire, msg.nomCarteT);
+                this.verifEtatPartie();
+                break;
+            
+            case SE_DEPLACER:
+                destinateur = joueurs.get(msg.destinateur);
+                int posX = msg.posX;
+                int posY = msg.posY;
+                if (grille.getTuile(posX, posY) != null && grille.getTuile(posX, posY).getEtat() != EtatTuile.COULEE) {
+                    destinateur.seDeplacer(posX, posY);
+                } else {
+                    System.out.println("ERREUR DEPLACEMENT : TUILE DESTINATION INEXISTANTE OU COULEE !");
+                }
+                this.verifEtatPartie();
+                break;
         }
     }
     
