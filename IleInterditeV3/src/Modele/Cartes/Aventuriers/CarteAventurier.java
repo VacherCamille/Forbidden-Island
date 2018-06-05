@@ -52,6 +52,7 @@ public abstract class CarteAventurier {
             return true;
          }
       }
+      System.out.println("assechement impossible" );
       return false;
     }
     
