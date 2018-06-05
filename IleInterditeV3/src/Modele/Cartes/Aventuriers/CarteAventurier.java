@@ -56,14 +56,26 @@ public abstract class CarteAventurier {
     
     
     public ArrayList<Position> getCasesAssech(){ // aficher les tuiles atteignables
-            ArrayList<Position> ap = new ArrayList();
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX()+ 1 , this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()+1));
-            ap.add(new Position(this.getAventurier().getPosition().getX()- 1 , this.getAventurier().getPosition().getY()));
-            ap.add(new Position(this.getAventurier().getPosition().getX(), this.getAventurier().getPosition().getY()-1));
-            return ap;
-        }
+         int x = this.getAventurier().getPosition().getX();
+         int y = this.getAventurier().getPosition().getY();
+         ArrayList<Position> ap = new ArrayList();
+         if (getAventurier().getTuile().getEtat() == EtatTuile.INONDEE){
+             ap.add(new Position(x, y));
+         }
+         if (getAventurier().getGrille().getTuile(x+1, y).getEtat() == EtatTuile.INONDEE){
+             ap.add(new Position(x+1, y));
+         }
+         if (getAventurier().getGrille().getTuile(x-1, y).getEtat() == EtatTuile.INONDEE){
+             ap.add(new Position(x-1, y));
+         }
+         if (getAventurier().getGrille().getTuile(x, y+1).getEtat() == EtatTuile.INONDEE){
+             ap.add(new Position(x, y+1));
+         }
+         if (getAventurier().getGrille().getTuile(x, y-1).getEtat() == EtatTuile.INONDEE){
+             ap.add(new Position(x, y-1));
+         }
+         return ap;
+      }
         
     
     public void donnerCarteT(Aventurier J2,CarteTresor C){
