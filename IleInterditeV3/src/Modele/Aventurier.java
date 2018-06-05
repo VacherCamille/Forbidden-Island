@@ -9,6 +9,7 @@ import Modele.Cartes.Aventuriers.CarteAventurier;
 import Modele.Cartes.Tresor.CarteTresor;
 import Modele.Plateau.Grille;
 import Modele.Plateau.Position;
+import Modele.Plateau.Tuile;
 import java.util.ArrayList;
 import util.Utils.Pion;
 import util.Utils.Tresor;
@@ -24,7 +25,6 @@ public class Aventurier {
     private Position position;
     private ArrayList<CarteTresor> deckTresor;
      private ArrayList<Tresor> Tresors;
-    private Grille g;
     
     public Aventurier(String nomAventurier, CarteAventurier role) {
         this.nomAventurier = nomAventurier;
@@ -48,7 +48,11 @@ public class Aventurier {
     }
 
    public Grille getGrille() {
-      return g;
+      return getPosition().getGrille();
+   }
+   
+   public Tuile getTuile() {
+      return getGrille().getTuile(getPosition().getX(),getPosition().getY());
    }
 
     public void setPosition(Position position) {
