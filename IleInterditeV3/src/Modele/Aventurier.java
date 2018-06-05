@@ -85,7 +85,28 @@ public class Aventurier {
         deckTresor.add(carteTresor);
     }
     
+    public CarteTresor getCarteTresorFromName(String nomCarteT) {
+        for (CarteTresor carte : this.getDeckTresor()) {
+            if (carte.getNomCarteT().equals(nomCarteT)) return carte;
+        }
+        return null;
+    }
+    
     public void removeCarteTresor(CarteTresor carteTresor) {
         deckTresor.remove(carteTresor);
+    }
+    
+    public void utiliserPA() {
+        this.pointAction -= 1;
+    }
+    
+    // === RACCOURCI ACTION ====================================================
+    
+    public void donnerCarte(Aventurier destinataire, String nomCarte) {
+        this.getRole().donnerCarte(destinataire, nomCarte);
+    }
+    
+    public void seDeplacer(int x, int y) {
+        this.getRole().seDeplacer(x, y);
     }
 }

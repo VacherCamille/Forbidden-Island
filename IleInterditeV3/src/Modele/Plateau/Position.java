@@ -56,4 +56,8 @@ public class Position {
     }
     
     // =========================================================================
+    
+    public Tuile getTuile() {
+        return grille.getTuile(x, y);
+    }
 }

@@ -39,6 +39,10 @@ public class Grille {
     public void setPosJoueur(String nomAventurier, Position position) {
         this.posJoueurs.put(nomAventurier, position);
     }
+
+    public HashMap<String, Position> getPosJoueurs() {
+        return posJoueurs;
+    }
     
     // === METHODES D'INITIALISATION DE LA GRILLE ==============================
     
