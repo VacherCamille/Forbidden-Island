@@ -31,7 +31,7 @@ public abstract class CarteAventurier {
     // === GETTERS & SETTERS ===================================================
 
     public Aventurier getAventurier() {
-        return a;
+        return joueur;
     }
 
    public String getNomRole() {
@@ -76,12 +76,14 @@ public abstract class CarteAventurier {
          }
          return ap;
       }
+    
+    
         
     
     public void donnerCarteT(Aventurier J2,CarteTresor C){
-        if (a.getPosition().getTuile().equals(J2.getPosition().getTuile())){
+        if (joueur.getPosition().getTuile().equals(J2.getPosition().getTuile())){
              J2.addCarteTresor(C);
-             a.removeCarteTresor(C);
+             joueur.removeCarteTresor(C);
         }
     }
         
@@ -131,6 +133,7 @@ public abstract class CarteAventurier {
         if( j==4){
           System.out.println("l'Aventurier " +a +" a gagné le trésor "+ c.toString());
           Tresors.remove(c.toString());
+         
         }
 
     
