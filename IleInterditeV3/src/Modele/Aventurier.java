@@ -12,7 +12,6 @@ import Modele.Plateau.Position;
 import Modele.Plateau.Tuile;
 import java.util.ArrayList;
 import util.Utils.Pion;
-import util.Utils.Tresor;
 
 /**
  *
@@ -21,14 +20,14 @@ import util.Utils.Tresor;
 public class Aventurier {
     private final String nomAventurier;
     private final CarteAventurier role;
-    private int pointAction = 3;
     private Position position;
     private ArrayList<CarteTresor> deckTresor;
-     private ArrayList<Tresor> Tresors;
+    private int pointAction;
     
     public Aventurier(String nomAventurier, CarteAventurier role) {
         this.nomAventurier = nomAventurier;
         this.role = role;
+        this.pointAction = 3;
         
         deckTresor = new ArrayList<>();
     }
@@ -47,14 +46,6 @@ public class Aventurier {
         return position;
     }
 
-   public Grille getGrille() {
-      return getPosition().getGrille();
-   }
-   
-   public Tuile getTuile() {
-      return getGrille().getTuile(getPosition().getX(),getPosition().getY());
-   }
-
     public void setPosition(Position position) {
         this.position = position;
     }
@@ -66,12 +57,16 @@ public class Aventurier {
     public int getPointAction() {
         return pointAction;
     }
-
-    public void setPointAction(int pointAction) {
-        this.pointAction = pointAction;
-    }
     
     // =========================================================================
+    
+    public Grille getEnvironnement() {
+        return this.getPosition().getGrille();
+    }
+    
+    public Tuile getTuile() {
+      return getEnvironnement().getTuile(getPosition().getX(),getPosition().getY());
+}
     
     public Pion getPion() {
         return this.getRole().getPion();
@@ -97,7 +92,7 @@ public class Aventurier {
     }
     
     public void removeCarteTresor(CarteTresor carteTresor) {
-        deckTresor.remove(carteTresor);
+        if (deckTresor.contains(carteTresor)) deckTresor.remove(carteTresor);
     }
     
     public void utiliserPA() {

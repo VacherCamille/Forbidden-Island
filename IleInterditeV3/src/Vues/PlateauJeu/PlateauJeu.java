@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vues;
+package Vues.PlateauJeu;
 
 import MVC.Observe;
 import Modele.Plateau.Grille;
-import Modele.Plateau.Tuile;
-import java.awt.Color;
-import javax.swing.JButton;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,6 +23,7 @@ public class PlateauJeu extends Observe {
     
     // Variable JFrame
     private JFrame window;
+    private JPanelPerso main;
     
     private javax.swing.JButton buttonDC1;
     private javax.swing.JButton buttonDC2;
@@ -65,6 +65,9 @@ public class PlateauJeu extends Observe {
         this.grille = grille;
         
         this.window = new JFrame("Île Interdite - Plateau de Jeu");
+        window.setLayout(new BorderLayout());
+        this.main = new JPanelPerso();
+        window.add(main, BorderLayout.CENTER);
         this.initWindow();
         this.initPlayers();
         
@@ -353,6 +356,7 @@ public class PlateauJeu extends Observe {
 
         panelJC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelJC.setPreferredSize(new java.awt.Dimension(1060, 147));
+        panelJC.setOpaque(false);
 
         panelNivEau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -400,8 +404,8 @@ public class PlateauJeu extends Observe {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(window.getContentPane());
-        window.getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(main);
+        main.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

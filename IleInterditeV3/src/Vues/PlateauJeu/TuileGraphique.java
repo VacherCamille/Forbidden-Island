@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vues;
+package Vues.PlateauJeu;
 
 import Modele.Plateau.Tuile;
 import java.awt.Color;
