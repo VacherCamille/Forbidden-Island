@@ -22,6 +22,15 @@ public class Plongeur extends CarteAventurier {
         super("Plongeur", Pion.VIOLET);
     }
     
+    @Override
+    public void seDeplacer(int x, int y){
+       if(getCaseAtteignable().contains(getJoueur().getEnvironnement().getTuile(x, y))){
+          getJoueur().getPosition().setX(x);
+          getJoueur().getPosition().setY(y);
+          getJoueur().utiliserPA();
+       }
+    }
+    
     public ArrayList<Tuile> getCaseAtteignable() {
          int x = this.getJoueur().getPosition().getX();
          int y = this.getJoueur().getPosition().getY();
@@ -41,7 +50,7 @@ public class Plongeur extends CarteAventurier {
              i++;
              l2 = ap.size();
          }while(l1 != l2);
-         //toutes les cases asséchée et inondée attegnables
+         //toutes les cases asséchée et inondée atteignables
          for(int[] pos : ap){
              aa = getCaseAdjacenteAsIn(pos[0],pos[1],aa);
          }
