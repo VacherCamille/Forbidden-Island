@@ -22,7 +22,7 @@ public class Message {
     public String nomCarteT;
     public String destinataire;
     
-    // SE_DEPLACER
+    // SE_DEPLACER ET ASSECHER
     public int posX;
     public int posY;
 }

@@ -5,6 +5,8 @@
  */
 package Modele.Cartes.Aventuriers;
 
+import Modele.Plateau.Position;
+import java.util.ArrayList;
 import util.Utils.Pion;
 
 /**
@@ -16,4 +18,15 @@ public class Explorateur extends CarteAventurier {
     public Explorateur() {
         super("Explorateur", Pion.VERT);
     }
+    
+       @Override
+     public ArrayList<Position> getCasesAssech() {
+      ArrayList ap = super.getCasesAssech(); 
+      ap.add(new Position(this.getJoueur().getPosition().getX()+1, this.getJoueur().getPosition().getY()+1));
+      ap.add(new Position(this.getJoueur().getPosition().getX()-1, this.getJoueur().getPosition().getY()+1));
+      ap.add(new Position(this.getJoueur().getPosition().getX()+1, this.getJoueur().getPosition().getY()-1));
+      ap.add(new Position(this.getJoueur().getPosition().getX()-1, this.getJoueur().getPosition().getY()-1));
+      return ap;
+   }
+
 }
