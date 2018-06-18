@@ -107,7 +107,9 @@ public class Aventurier {
     public void utiliserPA() {
         this.pointAction -= 1;
     }
-    
+    public Grille getEnvironnement(){
+       return position.getGrille();
+    }
     // === RACCOURCI ACTION ====================================================
     
     public void donnerCarte(Aventurier destinataire, String nomCarteT) {

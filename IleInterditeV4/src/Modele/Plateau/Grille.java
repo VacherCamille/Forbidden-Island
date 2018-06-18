@@ -54,7 +54,7 @@ public class Grille {
             Tresor spawnTresor = Tresor.getFromName(parts[2]);
             arrayList.add(new Tuile(nomTuile, spawnPion, spawnTresor));
         }
-        Utils.melangerTuiles(arrayList);
+        //Utils.melangerTuiles(arrayList);
     }
     
     private void initGrille(ArrayList<Tuile> arrayList) {

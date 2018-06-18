@@ -137,9 +137,22 @@ public class Controleur implements Observateur {
                 Utils.melangerAventuriers(pileAventurier);
                 
                 // 4. L'Île commence à sombrer :
-                for (int i = 0; i < 6; i++) {
-                    this.tirerCarteInondation();
-                }
+                //for (int i = 0; i < 6; i++) {
+                //    this.tirerCarteInondation();
+                //}
+                
+                this.grille.getTuile(0, 3).setEtat(EtatTuile.INONDEE);
+                this.grille.getTuile(2, 2).setEtat(EtatTuile.COULEE);
+                this.grille.getTuile(3, 1).setEtat(EtatTuile.INONDEE);
+                this.grille.getTuile(3, 2).setEtat(EtatTuile.COULEE);
+                this.grille.getTuile(3, 3).setEtat(EtatTuile.INONDEE);
+                this.grille.getTuile(3, 4).setEtat(EtatTuile.COULEE);
+                this.grille.getTuile(3, 5).setEtat(EtatTuile.INONDEE);
+                this.grille.getTuile(4, 2).setEtat(EtatTuile.COULEE);
+                this.grille.getTuile(5, 3).setEtat(EtatTuile.INONDEE);
+                
+       
+
                 
                 // 5. Les aventuriers débarquent :
                     // Création des aventuriers...
@@ -188,6 +201,8 @@ public class Controleur implements Observateur {
                 Aventurier destinataire = joueurs.get(msg.destinataire);
                 destinateur.donnerCarte(destinataire, msg.nomCarteT);
                 this.verifDeckTresorJoueurs();
+                                update();
+
                 break;
                 
             case SE_DEPLACER:
@@ -198,6 +213,8 @@ public class Controleur implements Observateur {
                 destinateur.seDeplacer(posL, posC);
                 
                 this.verifEtatJoueurs();
+                                update();
+
                 break;
                 
             case ASSECHER:
@@ -208,6 +225,7 @@ public class Controleur implements Observateur {
                 destinateur.assecherTuile(posL, posC);
                 
                 this.verifTuilesInondees();
+                update();
                 break;
         }
     }
@@ -219,6 +237,7 @@ public class Controleur implements Observateur {
         String nomTuile = carteTiree.getNomCarteI();
         grille.getTuileFromName(nomTuile).inonderTuile();
         defausseInondation.add(carteTiree);
+        
     }
     
     private void tirerCarteTresor(Aventurier aventurier) {
@@ -372,5 +391,8 @@ public class Controleur implements Observateur {
         System.out.println("\tIndex : " + niveauDEau.getIndexLevel());
         System.out.println("\tNiveau d'eau : " + niveauDEau.getWaterLevel());
         System.out.println();
+    }
+    private void update(){
+       plateauJeu.update();
     }
 }

@@ -318,4 +318,6 @@ public class EcranPrincipal extends Observe {
     public void fermer() {
         window.setVisible(false);
     }
+    
+
 }

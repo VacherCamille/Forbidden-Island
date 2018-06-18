@@ -108,4 +108,9 @@ class TuileGraphique extends JPanel {
         
         
     }
+    
+    public void update(){
+       this.setVisible(false);
+       this.setVisible(true);
+    }
 }

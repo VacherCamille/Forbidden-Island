@@ -476,4 +476,8 @@ public class PlateauJeu extends Observe {
     public void fermer() {
         window.setVisible(false);
     }
+    public void update(){
+       window.setVisible(false);
+       window.setVisible(true);
+    }
 }
